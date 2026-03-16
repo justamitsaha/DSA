@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class TimeComplexity {
+public class A_TimeComplexity {
     private static final int n = 100_000_000;
     private static final int[] arr = new int[n];
     private static HashMap<String, List<Long>> complexityTimes = new HashMap<>();

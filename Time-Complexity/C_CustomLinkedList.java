@@ -1,5 +1,5 @@
 
-public class CustomLinkedList {
+public class C_CustomLinkedList {
 
     // The 'Head' is the first node in the list
     private Node head;
@@ -35,7 +35,7 @@ public class CustomLinkedList {
     }
 
     public static void main(String[] args) {
-        CustomLinkedList list = new CustomLinkedList();
+        C_CustomLinkedList list = new C_CustomLinkedList();
         list.addAtFront(10);
         list.addAtFront(20);
         list.addAtFront(30);

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class InsertionComparison {
+public class B_InsertionComparison {
     public static void main(String[] args) {
         int iterations = 100_000;
 

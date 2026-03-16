@@ -1,0 +1,38 @@
+# Time Complexity Topic Review
+
+## 1. Overview
+You have done a great job setting up the foundation for Time Complexity analysis. You have implementations in both Java and Python, which is excellent for understanding language-specific overheads (JIT vs Interpreted).
+
+## 2. Status: Mostly Covered (70%)
+The core concepts of Big O notation are well-demonstrated through benchmarks. However, there are a few theoretical and practical gaps based on your study plan.
+
+### ✅ What You Have Covered:
+- **Big O Notations:** Implementation and benchmarking of O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ), and O(n!).
+- **Language Comparison:** Good understanding of how JVM (Java) vs CPython (Python) handles large loops and memory.
+- **Recursion Complexity:** You've shown the difference between naive O(2ⁿ) Fibonacci and optimized O(n) using memoization.
+- **Loop Analysis:** Basic linear search and nested loops are covered.
+- **Best/Worst Case:** Demonstrated via target positions in linear search (0 vs -1).
+
+### ❌ What is Missing / Needs More Focus:
+1. **Space Complexity:** 
+   - You haven't explicitly analyzed how much extra memory your algorithms are using.
+   - *Suggestion:* Add a script or notes explaining the space complexity of your recursive Fibonacci (O(n) stack space) vs iterative (O(1)).
+2. **Amortized Analysis:** 
+   - This is explicitly in your `README.md` but not yet in your code or notes.
+   - *Example:* Explain why adding an element to a dynamic array (like Python's `list` or Java's `ArrayList`) is O(1) *amortized*, even though resizing is O(n).
+3. **Formal Theory in MD:** 
+   - Your `Time-Complexity.MD` is a bit brief. It should include:
+     - Definitions for Best, Average, and Worst case.
+     - Why we focus on the Worst case.
+     - Rules for calculating Big O (Drop constants, Drop non-dominant terms).
+4. **Practice - Complex Loops:**
+   - Most of your examples are simple increments. Try analyzing loops that grow exponentially (e.g., `i *= 2`) to truly understand $O(\log n)$ without using a built-in library like `bisect`.
+
+## 3. Recommended Next Steps for Topic 1:
+- [ ] **Add a Space Complexity example:** Compare memory usage of an array vs a recursive stack.
+- [ ] **Document Amortized Analysis:** Use the dynamic array resizing example.
+- [ ] **Expand MD File:** Add sections on the "Rules of Big O" and "Amortized Analysis".
+- [ ] **Implement Binary Search manually:** Instead of using `bisect`, write it manually to show the $O(\log n)$ logic.
+
+---
+*Once these are done, you'll be 100% ready for Topic 2: Arrays.*

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ComplexityComparison {
+public class D_ComplexityComparison {
     private static final int n = 100_000_000;
     private static final int[] arr = new int[n];
     private static final Map<String, String> results = new LinkedHashMap<>();
