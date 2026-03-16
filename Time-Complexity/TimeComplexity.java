@@ -26,10 +26,9 @@ public class TimeComplexity {
             arr[i] = i;
         }
 
-        // By using i % 1000, the index will always stay between 0 and 999, no matter
-        // how high i goes in your 10,000-count loop. This prevents an
-        // ArrayIndexOutOfBoundsException
+        // By using i % 1000, the index will always stay between 0 and 999, no matter how high i goes in your 10,000-count loop. This prevents an ArrayIndexOutOfBoundsException
         for (int i = 0; i < 10000; i++) {
+            @SuppressWarnings("unused")
             int dummy = arr[i % 1000];
         }
         for (int i = 0; i < 100; i++) {
@@ -58,6 +57,7 @@ public class TimeComplexity {
 
     }
 
+    @SuppressWarnings("unused")
     public static long measureConstantComplexity(int index) {
         int iterations = 1000;
         long totalTime = 0;
