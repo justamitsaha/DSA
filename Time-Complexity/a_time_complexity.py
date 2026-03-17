@@ -1,34 +1,30 @@
 import time
 
-# In Java, int[] is a primitive array, taking up exactly 400 MB for 100 million integers. In Python, a list is an array of pointers to objects. Each integer in Python is an object that carries overhead. A list of 100 million integers can easily consume 2.5 GB to 4 GB of RAM. If your system has limited RAM, you might need to drop $n$ to 10,000_000 for the Python test.
-# Configuration
-n = 1_000_000
-# Initialize the array (This takes longer in Python than Java)
-print("Initializing array...")
-arr = list(range(n))
 
+n = 1_000_000 #kept smaller size than Java
+print("Initializing array...")
+arr = list(range(n))# Initialize the array takes longer in Python than Java
 complexity_times = {}
 
-def measure_linear_complexity(target):
-    # Reduced iterations because Python loops are significantly slower than Java's JIT-optimized loops
-    iterations = 3 
+def measureLinearComplexity(target):
+    iterations = 10 
     total_time = 0
     
     for _ in range(iterations):
         start = time.perf_counter_ns()
-        linear_search_logic(arr, target)
+        linearSearchLogic(arr, target)
         end = time.perf_counter_ns()
         total_time += (end - start)
         
     return total_time // iterations
 
-def linear_search_logic(array, target):
+def linearSearchLogic(array, target):
     for i in range(len(array)):
         if array[i] == target:
             return i
     return -1
 
-def measure_constant_complexity(index):
+def measureConstantComplexity(index):
     iterations = 1000
     total_time = 0
     
@@ -50,7 +46,7 @@ for i in range(10000):
     dummy = arr[i % 1000]
 
 for _ in range(2):
-    linear_search_logic(arr, -1)
+    linearSearchLogic(arr, -1)
 
 # --- Execution ---
 if __name__ == "__main__":
@@ -58,17 +54,17 @@ if __name__ == "__main__":
     
     # 1. Constant Complexity O(1)
     constant_results = [
-        measure_constant_complexity(0),
-        measure_constant_complexity(n // 2),
-        measure_constant_complexity(n - 1)
+        measureConstantComplexity(0),
+        measureConstantComplexity(n // 2),
+        measureConstantComplexity(n - 1)
     ]
     complexity_times["constantComplexity"] = constant_results
 
     # 2. Linear Complexity O(n)
     linear_results = [
-        measure_linear_complexity(0),
-        measure_linear_complexity(n // 2),
-        measure_linear_complexity(-1)
+        measureLinearComplexity(0),
+        measureLinearComplexity(n // 2),
+        measureLinearComplexity(-1)
     ]
     complexity_times["linearComplexity"] = linear_results
 
@@ -77,6 +73,9 @@ if __name__ == "__main__":
         # Displaying in nanoseconds
         print(f"{key}: {values}")
 
+
+# In Java, int[] is a primitive array, taking up exactly 400 MB for 100 million integers. In Python, a list is an array of pointers to objects. Each integer in Python is an object that carries overhead. A list of 100 million integers can easily consume 2.5 GB to 4 GB of RAM. If your system has limited RAM, you might need to drop $n$ to 10,000_000 for the Python test.
+# Configuration
 
 # Key Differences to Observe
 # Measurement Tool: Instead of System.nanoTime(), we use time.perf_counter_ns(). This is the most precise clock in Python for measuring short durations.
