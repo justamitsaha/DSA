@@ -9,6 +9,19 @@ arr = list(range(n))
 
 complexity_times = {}
 
+def measure_linear_complexity(target):
+    # Reduced iterations because Python loops are significantly slower than Java's JIT-optimized loops
+    iterations = 3 
+    total_time = 0
+    
+    for _ in range(iterations):
+        start = time.perf_counter_ns()
+        linear_search_logic(arr, target)
+        end = time.perf_counter_ns()
+        total_time += (end - start)
+        
+    return total_time // iterations
+
 def linear_search_logic(array, target):
     for i in range(len(array)):
         if array[i] == target:
@@ -27,18 +40,7 @@ def measure_constant_complexity(index):
         
     return total_time // iterations
 
-def measure_linear_complexity(target):
-    # Reduced iterations because Python loops are significantly slower than Java's JIT-optimized loops
-    iterations = 3 
-    total_time = 0
-    
-    for _ in range(iterations):
-        start = time.perf_counter_ns()
-        linear_search_logic(arr, target)
-        end = time.perf_counter_ns()
-        total_time += (end - start)
-        
-    return total_time // iterations
+
 
 # --- "Warm-up" Logic ---
 # Note: CPython (standard Python) doesn't have a JIT like Java, 
