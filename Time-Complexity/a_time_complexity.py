@@ -1,10 +1,22 @@
 import time
 
 
-n = 1_000_000 #kept smaller size than Java
+n = 10_000_000 #kept smaller size than Java
 print("Initializing array...")
 arr = list(range(n))# Initialize the array takes longer in Python than Java
 complexity_times = {}
+
+def measureConstantComplexity(index):
+    iterations = 1000
+    total_time = 0
+    
+    for _ in range(iterations):
+        start = time.perf_counter_ns()
+        value = arr[index]
+        end = time.perf_counter_ns()
+        total_time += (end - start)
+        
+    return total_time // iterations
 
 def measureLinearComplexity(target):
     iterations = 10 
@@ -23,19 +35,6 @@ def linearSearchLogic(array, target):
         if array[i] == target:
             return i
     return -1
-
-def measureConstantComplexity(index):
-    iterations = 1000
-    total_time = 0
-    
-    for _ in range(iterations):
-        start = time.perf_counter_ns()
-        value = arr[index]
-        end = time.perf_counter_ns()
-        total_time += (end - start)
-        
-    return total_time // iterations
-
 
 
 # --- "Warm-up" Logic ---

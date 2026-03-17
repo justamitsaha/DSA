@@ -8,6 +8,19 @@ public class A_TimeComplexity {
     private static final int[] arr = new int[n];
     private static HashMap<String, List<Long>> complexityTimes = new HashMap<>();
 
+    @SuppressWarnings("unused")
+    public static long measureConstantComplexity(int index) {
+        int iterations = 1000;
+        long totalTime = 0;
+
+        for (int i = 0; i < iterations; i++) {
+            long start = System.nanoTime();
+            int value = arr[index];
+            long end = System.nanoTime();
+            totalTime += (end - start);
+        }
+        return totalTime / iterations;
+    }
 
     public static long measureLinearComplexity(int target) {
         int iterations = 10;
@@ -31,21 +44,6 @@ public class A_TimeComplexity {
         }
         return -1;
     }
-
-    @SuppressWarnings("unused")
-    public static long measureConstantComplexity(int index) {
-        int iterations = 1000;
-        long totalTime = 0;
-
-        for (int i = 0; i < iterations; i++) {
-            long start = System.nanoTime();
-            int value = arr[index];
-            long end = System.nanoTime();
-            totalTime += (end - start);
-        }
-        return totalTime / iterations;
-    }
-
 
     static {
         for (int i = 0; i < arr.length; i++) {
