@@ -1,7 +1,7 @@
 
 public class C_CustomLinkedList {
 
-    // The 'Head' is the first node in the list
+    // The 'Head' is the latest node in the list
     private Node head;
 
     // A Node is just a small object that holds two things:

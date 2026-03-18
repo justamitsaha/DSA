@@ -4,6 +4,8 @@ import time
 n = 10_000_000 #kept smaller size than Java
 print("Initializing array...")
 arr = list(range(n))# Initialize the array takes longer in Python than Java
+#array created with value 0 to 9,999,999 
+print(arr[566])
 complexity_times = {}
 
 def measureConstantComplexity(index):

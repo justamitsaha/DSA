@@ -13,6 +13,15 @@ public class B_InsertionComparison {
             arrayList.add(0, i); // Insert at the very front
         }
         long endArray = System.nanoTime();
+        System.out.println(arrayList.get(24));
+
+        arrayList = new ArrayList<>();
+        long arrayAddStart = System.nanoTime();
+        for (int i = 0; i < iterations; i++) {
+            arrayList.add(i); // Insert at the end (for comparison)
+        }
+        long arrayAddEnd = System.nanoTime();
+        System.out.println(arrayList.get(24));
 
         // 2. Benchmark LinkedList (Node-based)
         List<Integer> linkedList = new LinkedList<>();
@@ -23,6 +32,7 @@ public class B_InsertionComparison {
         long endLinked = System.nanoTime();
 
         System.out.println("ArrayList Front Insertion: " + (endArray - startArray) / 1_000_000.0 + " ms");
+        System.out.println("ArrayList End Insertion: " + (arrayAddEnd - arrayAddStart) / 1_000_000.0 + " ms");        
         System.out.println("LinkedList Front Insertion: " + (endLinked - startLinked) / 1_000_000.0 + " ms");
     }
 }
