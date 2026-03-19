@@ -1,4 +1,11 @@
-public class CustomFIFO {
+/*
+head
+ ↓
+[ 1 | next ] → [ 2 | next ] → [ 3 | next ] → [ 4 | next ] → [ 5 | next:null ]
+                                                              ↑
+                                                            tail
+*/
+public class FIFOCustom {
 
     public static class Node {
         int val;
@@ -12,6 +19,7 @@ public class CustomFIFO {
     public Node head;
     public Node tail;
 
+    /*Also called enqueue Add element to the rear Must be O(1)*/
     public void push(int i) {
         Node n = new Node(i);
 
@@ -24,7 +32,11 @@ public class CustomFIFO {
         }
     }
 
-    public void getAllItemsFIFO() {
+    public void pop(){
+        tail = tail.next;
+    }
+
+    public void traverse() {
         Node n = head;
 
         while (n != null) {
@@ -34,13 +46,13 @@ public class CustomFIFO {
     }
 
     public static void main(String[] args) {
-        CustomFIFO c = new CustomFIFO();
+        FIFOCustom c = new FIFOCustom();
         c.push(1);
         c.push(2);
         c.push(3);
         c.push(4);
         c.push(5);
-
-        c.getAllItemsFIFO();
+        System.out.println(c.tail.next);
+        c.traverse();
     }
 }

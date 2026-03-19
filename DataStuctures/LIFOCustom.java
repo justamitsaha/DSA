@@ -1,5 +1,5 @@
 
-public class CustomLIFO {
+public class LIFOCustom {
 
     // The 'Head' is the latest node in the list
     private Node head;
@@ -35,7 +35,7 @@ public class CustomLIFO {
     }
 
     public static void main(String[] args) {
-        CustomLIFO list = new CustomLIFO();
+        LIFOCustom list = new LIFOCustom();
         list.addAtFront(10);
         list.addAtFront(20);
         list.addAtFront(30);
