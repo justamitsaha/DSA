@@ -1,5 +1,5 @@
 
-public class C_CustomLinkedList {
+public class CustomLIFO {
 
     // The 'Head' is the latest node in the list
     private Node head;
@@ -35,7 +35,7 @@ public class C_CustomLinkedList {
     }
 
     public static void main(String[] args) {
-        C_CustomLinkedList list = new C_CustomLinkedList();
+        CustomLIFO list = new CustomLIFO();
         list.addAtFront(10);
         list.addAtFront(20);
         list.addAtFront(30);
