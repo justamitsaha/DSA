@@ -1,3 +1,12 @@
+"""
+Structure:
+      [ Root ]
+     /      \
+  [ L ]    [ R ]
+ /    \    /    \
+[LL] [LR][RL]  [RR]
+"""
+
 from collections import deque
 
 class Node:

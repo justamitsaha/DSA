@@ -1,3 +1,11 @@
+"""
+Structure:
+Inbound Stack:  [ 3 ]  Outbound Stack: [   ]
+                [ 2 ]                  [   ]
+                [ 1 ]                  [   ]
+(To dequeue, pop from Inbound and push to Outbound)
+"""
+
 class QueueUsingTwoStacksCustom:
     """Custom Queue Implementation using two Stacks."""
     def __init__(self):

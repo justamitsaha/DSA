@@ -1,10 +1,18 @@
+/*
+Structure:
+       [ 50 ]
+      /      \
+   [ 30 ]   [ 70 ]
+  /    \    /    \
+[ 20 ][ 40 ][ 60 ][ 80 ]
+*/
 
 /**
  * Custom Binary Search Tree (BST) Implementation.
  * 
  * @param <T> the type of elements in this tree
  */
-public class BinarySearchTreeCustom<T extends Comparable<T>> {
+public class I_BinarySearchTreeCustom<T extends Comparable<T>> {
 
     private static class Node<T> {
         T data;
@@ -93,7 +101,7 @@ public class BinarySearchTreeCustom<T extends Comparable<T>> {
     }
 
     public static void main(String[] args) {
-        BinarySearchTreeCustom<Integer> bst = new BinarySearchTreeCustom<>();
+        I_BinarySearchTreeCustom<Integer> bst = new I_BinarySearchTreeCustom<>();
         bst.insert(50);
         bst.insert(30);
         bst.insert(20);

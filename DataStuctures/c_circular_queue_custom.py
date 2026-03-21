@@ -1,3 +1,11 @@
+"""
+Structure:
+[ 1 | 2 | 3 | 4 | 5 ]
+  ^           ^
+Front        Rear
+(Connects back to start)
+"""
+
 class CircularQueueCustom:
     """Custom Circular Queue Implementation."""
     def __init__(self, capacity):

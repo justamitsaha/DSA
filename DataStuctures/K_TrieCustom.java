@@ -1,3 +1,14 @@
+/*
+Structure:
+      (root)
+     /   \   \
+    a     b   c
+   / \     \
+  n   p     a
+ /     \     \
+t       p     t
+(ant)  (app)  (cat)
+*/
 
 import java.util.HashMap;
 import java.util.Map;
@@ -5,7 +16,7 @@ import java.util.Map;
 /**
  * Custom Trie Implementation for Prefix-based Search.
  */
-public class TrieCustom {
+public class K_TrieCustom {
 
     private static class TrieNode {
         Map<Character, TrieNode> children;
@@ -19,7 +30,7 @@ public class TrieCustom {
 
     private final TrieNode root;
 
-    public TrieCustom() {
+    public K_TrieCustom() {
         root = new TrieNode();
     }
 
@@ -53,7 +64,7 @@ public class TrieCustom {
     }
 
     public static void main(String[] args) {
-        TrieCustom trie = new TrieCustom();
+        K_TrieCustom trie = new K_TrieCustom();
         trie.insert("apple");
         System.out.println("Search apple: " + trie.search("apple"));
         System.out.println("Search app: " + trie.search("app"));

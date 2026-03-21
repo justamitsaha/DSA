@@ -1,3 +1,15 @@
+"""
+Structure:
+      (root)
+     /   \   \
+    a     b   c
+   / \     \
+  n   p     a
+ /     \     \
+t       p     t
+(ant)  (app)  (cat)
+"""
+
 class TrieNode:
     def __init__(self):
         self.children = {}

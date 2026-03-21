@@ -1,10 +1,17 @@
+/*
+Structure:
+[ 1 | 2 | 3 | 4 | 5 ]
+  ^           ^
+Front        Rear
+(Connects back to start)
+*/
 
 /**
  * Custom Circular Queue Implementation.
  * 
  * @param <T> the type of elements in this queue
  */
-public class CircularQueueCustom<T> {
+public class C_CircularQueueCustom<T> {
     private T[] array;
     private int front;
     private int rear;
@@ -12,10 +19,10 @@ public class CircularQueueCustom<T> {
     private int capacity;
 
     @SuppressWarnings("unchecked")
-    public CircularQueueCustom(int capacity) {
+    public C_CircularQueueCustom(int capacity) {
         this.capacity = capacity;
         this.array = (T[]) new Object[capacity];
-        this.front = -1;
+        this.front = 0;
         this.rear = -1;
         this.size = 0;
     }
@@ -84,7 +91,7 @@ public class CircularQueueCustom<T> {
     }
 
     public static void main(String[] args) {
-        CircularQueueCustom<Integer> q = new CircularQueueCustom<>(5);
+        C_CircularQueueCustom<Integer> q = new C_CircularQueueCustom<>(5);
         q.enqueue(10);
         q.enqueue(20);
         q.enqueue(30);

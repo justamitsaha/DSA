@@ -1,3 +1,10 @@
+/*
+Structure (Adjacency List):
+[ A ] -> [ B ] -> [ C ]
+[ B ] -> [ A ] -> [ D ]
+[ C ] -> [ A ]
+[ D ] -> [ B ]
+*/
 
 import java.util.*;
 
@@ -6,10 +13,10 @@ import java.util.*;
  * 
  * @param <T> the type of elements in this graph
  */
-public class GraphCustom<T> {
+public class L_GraphCustom<T> {
     private Map<T, List<T>> adjacencyList;
 
-    public GraphCustom() {
+    public L_GraphCustom() {
         this.adjacencyList = new HashMap<>();
     }
 
@@ -73,7 +80,7 @@ public class GraphCustom<T> {
     }
 
     public static void main(String[] args) {
-        GraphCustom<Integer> graph = new GraphCustom<>();
+        L_GraphCustom<Integer> graph = new L_GraphCustom<>();
         graph.addEdge(0, 1, true);
         graph.addEdge(0, 4, true);
         graph.addEdge(1, 2, true);

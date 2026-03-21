@@ -1,3 +1,9 @@
+"""
+Structure:
+Double Ended Queue
+Front <-> [ 1 ] <-> [ 2 ] <-> [ 3 ] <-> Rear
+"""
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -5,8 +11,8 @@ class Node:
         self.next = None
 
 
-class DoublyLinkedListCustom:
-    """Custom Doubly Linked List Implementation."""
+class DequeCustom:
+    """Custom Deque (Double-ended Queue) Implementation."""
     def __init__(self):
         self.head = None
         self.tail = None
@@ -56,35 +62,33 @@ class DoublyLinkedListCustom:
         self._size -= 1
         return data
 
+    def peek_first(self):
+        return self.head.data if self.head else None
+
+    def peek_last(self):
+        return self.tail.data if self.tail else None
+
     def is_empty(self):
         return self._size == 0
 
     def size(self):
         return self._size
 
-    def display_forward(self):
-        print("Forward: ", end="")
+    def display(self):
+        print("Deque: ", end="")
         current = self.head
         while current:
-            print(f"{current.data} <-> ", end="")
+            print(f"{current.data} ", end="")
             current = current.next
-        print("None")
-
-    def display_backward(self):
-        print("Backward: ", end="")
-        current = self.tail
-        while current:
-            print(f"{current.data} <-> ", end="")
-            current = current.prev
-        print("None")
+        print()
 
 
 if __name__ == "__main__":
-    dll = DoublyLinkedListCustom()
-    dll.add_last(10)
-    dll.add_last(20)
-    dll.add_first(5)
-    dll.display_forward()
-    dll.display_backward()
-    print("Removed Last:", dll.remove_last())
-    dll.display_forward()
+    dq = DequeCustom()
+    dq.add_last(10)
+    dq.add_last(20)
+    dq.add_first(5)
+    dq.display()
+    print("Removed Last:", dq.remove_last())
+    print("Removed First:", dq.remove_first())
+    dq.display()

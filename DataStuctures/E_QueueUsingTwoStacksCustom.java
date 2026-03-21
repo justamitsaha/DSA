@@ -1,3 +1,10 @@
+/*
+Structure:
+Inbound Stack:  [ 3 ]  Outbound Stack: [   ]
+                [ 2 ]                  [   ]
+                [ 1 ]                  [   ]
+(To dequeue, pop from Inbound and push to Outbound)
+*/
 
 import java.util.Stack;
 
@@ -6,7 +13,7 @@ import java.util.Stack;
  * 
  * @param <T> the type of elements in this queue
  */
-public class QueueUsingTwoStacksCustom<T> {
+public class E_QueueUsingTwoStacksCustom<T> {
     private Stack<T> stack1 = new Stack<>();
     private Stack<T> stack2 = new Stack<>();
 
@@ -43,7 +50,7 @@ public class QueueUsingTwoStacksCustom<T> {
     }
 
     public static void main(String[] args) {
-        QueueUsingTwoStacksCustom<Integer> q = new QueueUsingTwoStacksCustom<>();
+        E_QueueUsingTwoStacksCustom<Integer> q = new E_QueueUsingTwoStacksCustom<>();
         q.enqueue(1);
         q.enqueue(2);
         q.enqueue(3);

@@ -1,3 +1,9 @@
+/*
+Structure:
+Queue 1: [ 1 | 2 | 3 ]
+Queue 2: [           ]
+(To push, add to non-empty queue. To pop, move all but last to other queue)
+*/
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,7 +13,7 @@ import java.util.Queue;
  * 
  * @param <T> the type of elements in this stack
  */
-public class StackUsingTwoQueuesCustom<T> {
+public class F_StackUsingTwoQueuesCustom<T> {
     private Queue<T> q1 = new LinkedList<>();
     private Queue<T> q2 = new LinkedList<>();
 
@@ -40,7 +46,7 @@ public class StackUsingTwoQueuesCustom<T> {
     }
 
     public static void main(String[] args) {
-        StackUsingTwoQueuesCustom<Integer> s = new StackUsingTwoQueuesCustom<>();
+        F_StackUsingTwoQueuesCustom<Integer> s = new F_StackUsingTwoQueuesCustom<>();
         s.push(1);
         s.push(2);
         s.push(3);

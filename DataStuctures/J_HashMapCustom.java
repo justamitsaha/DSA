@@ -1,3 +1,10 @@
+/*
+Structure:
+Index [0] -> [ Key1 | Val1 | Next ] -> [ Key4 | Val4 | Next ]
+Index [1] -> null
+Index [2] -> [ Key2 | Val2 | Next ]
+Index [3] -> [ Key3 | Val3 | Next ]
+*/
 
 import java.util.LinkedList;
 
@@ -7,7 +14,7 @@ import java.util.LinkedList;
  * @param <K> the type of keys
  * @param <V> the type of values
  */
-public class HashMapCustom<K, V> {
+public class J_HashMapCustom<K, V> {
 
     private static class Entry<K, V> {
         K key;
@@ -25,7 +32,7 @@ public class HashMapCustom<K, V> {
     private static final double LOAD_FACTOR = 0.75;
 
     @SuppressWarnings("unchecked")
-    public HashMapCustom() {
+    public J_HashMapCustom() {
         table = new LinkedList[DEFAULT_CAPACITY];
         size = 0;
     }
@@ -106,7 +113,7 @@ public class HashMapCustom<K, V> {
     }
 
     public static void main(String[] args) {
-        HashMapCustom<String, Integer> map = new HashMapCustom<>();
+        J_HashMapCustom<String, Integer> map = new J_HashMapCustom<>();
         map.put("One", 1);
         map.put("Two", 2);
         map.put("Three", 3);

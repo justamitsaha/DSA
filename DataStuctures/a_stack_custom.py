@@ -1,3 +1,13 @@
+"""
+Structure:
+Last In First Out (LIFO)
+
+Example:
+[ 3 ] <- Top
+[ 2 ]
+[ 1 ]
+"""
+
 class ArrayStack:
     """Array-based implementation of Stack."""
     def __init__(self, capacity):

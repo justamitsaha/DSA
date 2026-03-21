@@ -1,3 +1,13 @@
+"""
+Structure:
+(Heap Representation)
+      [ 10 ]
+     /      \
+  [ 7 ]    [ 8 ]
+ /    \
+[ 5 ] [ 2 ]
+"""
+
 class Heap:
     """Custom Heap Implementation for Priority Queue."""
     def __init__(self, is_min_heap=True):

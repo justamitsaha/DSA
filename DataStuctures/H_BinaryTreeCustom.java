@@ -1,3 +1,11 @@
+/*
+Structure:
+      [ Root ]
+     /      \
+  [ L ]    [ R ]
+ /    \    /    \
+[LL] [LR][RL]  [RR]
+*/
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,7 +15,7 @@ import java.util.Queue;
  * 
  * @param <T> the type of elements in this tree
  */
-public class BinaryTreeCustom<T> {
+public class H_BinaryTreeCustom<T> {
 
     public static class Node<T> {
         T data;
@@ -53,7 +61,7 @@ public class BinaryTreeCustom<T> {
     }
 
     public static void main(String[] args) {
-        BinaryTreeCustom<Integer> tree = new BinaryTreeCustom<>();
+        H_BinaryTreeCustom<Integer> tree = new H_BinaryTreeCustom<>();
         Node<Integer> root = new Node<>(1);
         root.left = new Node<>(2);
         root.right = new Node<>(3);

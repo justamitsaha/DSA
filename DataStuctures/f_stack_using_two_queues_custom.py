@@ -1,3 +1,10 @@
+"""
+Structure:
+Queue 1: [ 1 | 2 | 3 ]
+Queue 2: [           ]
+(To push, add to non-empty queue. To pop, move all but last to other queue)
+"""
+
 from collections import deque
 
 class StackUsingTwoQueuesCustom:

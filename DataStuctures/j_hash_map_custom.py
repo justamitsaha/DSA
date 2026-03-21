@@ -1,3 +1,11 @@
+"""
+Structure:
+Index [0] -> [ Key1 | Val1 | Next ] -> [ Key4 | Val4 | Next ]
+Index [1] -> null
+Index [2] -> [ Key2 | Val2 | Next ]
+Index [3] -> [ Key3 | Val3 | Next ]
+"""
+
 class Entry:
     def __init__(self, key, value):
         self.key = key

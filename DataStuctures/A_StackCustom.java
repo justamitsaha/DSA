@@ -1,3 +1,12 @@
+/*
+Structure:
+Last In First Out (LIFO)
+
+Example:
+[ 3 ] <- Top
+[ 2 ]
+[ 1 ]
+*/
 
 import java.util.EmptyStackException;
 
@@ -6,7 +15,7 @@ import java.util.EmptyStackException;
  * 
  * @param <T> the type of elements in this stack
  */
-public class StackCustom<T> {
+public class A_StackCustom<T> {
 
     /**
      * Array-based implementation of Stack.

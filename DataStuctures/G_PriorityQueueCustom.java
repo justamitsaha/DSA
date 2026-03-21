@@ -1,3 +1,12 @@
+/*
+Structure:
+(Heap Representation)
+      [ 10 ]
+     /      \
+  [ 7 ]    [ 8 ]
+ /    \
+[ 5 ] [ 2 ]
+*/
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,7 +16,7 @@ import java.util.Comparator;
  * 
  * @param <T> the type of elements in this priority queue
  */
-public class PriorityQueueCustom<T extends Comparable<T>> {
+public class G_PriorityQueueCustom<T extends Comparable<T>> {
 
     public static class Heap<T extends Comparable<T>> {
         private ArrayList<T> list;

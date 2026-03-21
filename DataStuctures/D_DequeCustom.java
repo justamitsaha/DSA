@@ -1,10 +1,15 @@
+/*
+Structure:
+Double Ended Queue
+Front <-> [ 1 ] <-> [ 2 ] <-> [ 3 ] <-> Rear
+*/
 
 /**
- * Custom Doubly Linked List Implementation.
+ * Custom Deque (Double-ended Queue) Implementation using Doubly Linked List.
  * 
- * @param <T> the type of elements in this list
+ * @param <T> the type of elements in this deque
  */
-public class DoublyLinkedListCustom<T> {
+public class D_DequeCustom<T> {
 
     private static class Node<T> {
         T data;
@@ -19,12 +24,6 @@ public class DoublyLinkedListCustom<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
-
-    public DoublyLinkedListCustom() {
-        this.head = null;
-        this.tail = null;
-        this.size = 0;
-    }
 
     public void addFirst(T data) {
         Node<T> newNode = new Node<>(data);
@@ -76,6 +75,14 @@ public class DoublyLinkedListCustom<T> {
         return data;
     }
 
+    public T peekFirst() {
+        return isEmpty() ? null : head.data;
+    }
+
+    public T peekLast() {
+        return isEmpty() ? null : tail.data;
+    }
+
     public boolean isEmpty() {
         return size == 0;
     }
@@ -84,34 +91,24 @@ public class DoublyLinkedListCustom<T> {
         return size;
     }
 
-    public void displayForward() {
-        System.out.print("Forward: ");
+    public void display() {
+        System.out.print("Deque: ");
         Node<T> current = head;
         while (current != null) {
-            System.out.print(current.data + " <-> ");
+            System.out.print(current.data + " ");
             current = current.next;
         }
-        System.out.println("null");
-    }
-
-    public void displayBackward() {
-        System.out.print("Backward: ");
-        Node<T> current = tail;
-        while (current != null) {
-            System.out.print(current.data + " <-> ");
-            current = current.prev;
-        }
-        System.out.println("null");
+        System.out.println();
     }
 
     public static void main(String[] args) {
-        DoublyLinkedListCustom<Integer> list = new DoublyLinkedListCustom<>();
-        list.addLast(10);
-        list.addLast(20);
-        list.addFirst(5);
-        list.displayForward();
-        list.displayBackward();
-        System.out.println("Removed Last: " + list.removeLast());
-        list.displayForward();
+        D_DequeCustom<Integer> dq = new D_DequeCustom<>();
+        dq.addLast(10);
+        dq.addLast(20);
+        dq.addFirst(5);
+        dq.display();
+        System.out.println("Removed Last: " + dq.removeLast());
+        System.out.println("Removed First: " + dq.removeFirst());
+        dq.display();
     }
 }

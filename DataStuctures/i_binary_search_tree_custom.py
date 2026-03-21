@@ -1,3 +1,12 @@
+"""
+Structure:
+       [ 50 ]
+      /      \
+   [ 30 ]   [ 70 ]
+  /    \    /    \
+[ 20 ][ 40 ][ 60 ][ 80 ]
+"""
+
 class Node:
     def __init__(self, data):
         self.data = data
