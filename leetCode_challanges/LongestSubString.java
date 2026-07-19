@@ -25,18 +25,28 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 
 public class LongestSubString {
     public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("abca"));
+        //System.out.println(lengthOfLongestSubstring("bbbbb"));
+        //System.out.println(lengthOfLongestSubstring("pwwkew"));
 
     }
 
-    public static  int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) {
+        int result = 0;
         int count = 0;
-        for(int i =0; i< s.length(); i++){
-            HashMap<Character, Integer> map = new HashMap<>();
-            if(null == map.put(s.charAt(i), i)){
-                count ++;
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (null == map.put(c, i)) {
+                count++;
+                if (count > result)
+                    result = count;
             } else {
+                if (count > result)
+                    result = count;
                 count = 0;
-                i = map.get(s.charAt(i)) +1;
+                i = map.get(c);
+                map.clear();
             }
         }
 
