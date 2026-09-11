@@ -20,9 +20,9 @@ This document tracks the journey through Data Structures and Algorithms, followi
 ## Phase 2: Linear Data Structures
 | Topic | Implementation | Problems | Key Files |
 | :--- | :---: | :---: | :--- |
-| **Arrays** | [ ] | [x] | `leetcode/arrays/`: LC 1 (Two Sum), LC 53 (Max Subarray) |
-| **Strings** | [ ] | [x] | `leetcode/strings/`: LC 3 (Longest Substring) |
-| **Linked Lists (Singly)** | [ ] | [x] | `leetcode/linked_lists/`: LC 2 (Add Two Numbers) |
+| **Arrays** | [ ] | [x] | `leetcode/A_Array/`: LC 53 (Max Subarray), LC 121 (Stock), LC 189 (Rotate), LC 238 (Product) |
+| **Strings** | [ ] | [x] | `leetcode/F_SlidingWindow/`: LC 3 (Longest Substring) |
+| **Linked Lists (Singly)** | [ ] | [x] | `leetcode/C_LinkedList/`: LC 2 (Add Two Numbers) |
 | **Linked Lists (Doubly)** | [x] | [ ] | `DataStructures/B_DoublyLinkedListCustom` |
 | **Linked Lists (Circular)** | [ ] | [ ] | |
 | **Stack** | [x] | [ ] | `DataStructures/A_StackCustom` |
