@@ -26,7 +26,7 @@ Big-O describes the **upper bound of algorithm growth**.
 | **O(2ⁿ)** | Exponential | Recursive Fibonacci (naive) |1,024 | $1.26 \times 10^{30}$ |
 | **O(n!)** | Factorial | Generating all permutations of a string | | |   
 
-![Time Complexity Graph](../asset/image-1.webp)
+![Time Complexity Graph](../assets/image-1.webp)
 
 ---
 

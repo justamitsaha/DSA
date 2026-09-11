@@ -3,8 +3,8 @@
 This document tracks the journey through Data Structures and Algorithms, following the roadmap in `README.md`.
 
 ## Legend
-- [x] **Implemented**: Data structure written from scratch in Java & Python.
-- [ ] **Problem Solving**: Solved 5-10 classic problems for this topic.
+- [x] **Implemented**: Data structure written from scratch in Java & Python (in `DataStructures/`).
+- [x] **Problem Solving**: LeetCode solutions added in `leetcode/<topic>/`.
 - [ ] **Contrast**: Documented language-specific differences (Java vs Python).
 
 ---
@@ -12,60 +12,60 @@ This document tracks the journey through Data Structures and Algorithms, followi
 ## Phase 1: The Essentials
 | Topic | Implementation | Problems | Theory/Note |
 | :--- | :---: | :---: | :--- |
-| **Complexity Analysis** | [x] | [ ] | See `Time-Complexity/` |
-| **Language Basics (Java/Python)** | [x] | [ ] | Focus on Collections vs Built-ins |
+| **Complexity Analysis** | [x] | [ ] | See `Basics/` and `docs/notes/` |
+| **Language Basics (Java/Python)** | [x] | [ ] | Focus on Collections vs Built-ins (`Basics/`) |
 
 ---
 
 ## Phase 2: Linear Data Structures
 | Topic | Implementation | Problems | Key Files |
 | :--- | :---: | :---: | :--- |
-| **Arrays** | [ ] | [ ] | Need custom traversal/rotation logic |
-| **Strings** | [ ] | [ ] | Need Palindrome/Anagram implementations |
-| **Linked Lists (Singly)** | [ ] | [ ] | |
-| **Linked Lists (Doubly)** | [x] | [ ] | `b_doubly_linked_list_custom` |
+| **Arrays** | [ ] | [x] | `leetcode/arrays/`: LC 1 (Two Sum), LC 53 (Max Subarray) |
+| **Strings** | [ ] | [x] | `leetcode/strings/`: LC 3 (Longest Substring) |
+| **Linked Lists (Singly)** | [ ] | [x] | `leetcode/linked_lists/`: LC 2 (Add Two Numbers) |
+| **Linked Lists (Doubly)** | [x] | [ ] | `DataStructures/B_DoublyLinkedListCustom` |
 | **Linked Lists (Circular)** | [ ] | [ ] | |
-| **Stack** | [x] | [ ] | `a_stack_custom` |
-| **Queue (Circular)** | [x] | [ ] | `c_circular_queue_custom` |
-| **Deque** | [x] | [ ] | `d_deque_custom` |
-| **Stack/Queue Inter-impl** | [x] | [ ] | `e_queue_using_two_stacks`, `f_stack_using_two_queues` |
+| **Stack** | [x] | [ ] | `DataStructures/A_StackCustom` |
+| **Queue (Circular)** | [x] | [ ] | `DataStructures/C_CircularQueueCustom` |
+| **Deque** | [x] | [ ] | `DataStructures/D_DequeCustom` |
+| **Stack/Queue Inter-impl** | [x] | [ ] | `DataStructures/E_QueueUsingTwoStacksCustom`, `F_StackUsingTwoQueuesCustom` |
 
 ---
 
 ## Phase 3: Non-Linear Data Structures
 | Topic | Implementation | Problems | Key Files |
 | :--- | :---: | :---: | :--- |
-| **Hashing** | [x] | [ ] | `j_hash_map_custom` |
-| **Trees (Binary Tree)** | [x] | [ ] | `h_binary_tree_custom` |
-| **Trees (BST)** | [x] | [ ] | `i_binary_search_tree_custom` |
-| **Heaps / Priority Queue** | [x] | [ ] | `g_priority_queue_custom` |
-| **Graphs (Adjacency List/Matrix)** | [x] | [ ] | `l_graph_custom` |
-| **Graph Traversal (BFS/DFS)** | [x] | [ ] | Included in `l_graph_custom` |
+| **Hashing** | [x] | [ ] | `DataStructures/J_HashMapCustom` |
+| **Trees (Binary Tree)** | [x] | [ ] | `DataStructures/H_BinaryTreeCustom` |
+| **Trees (BST)** | [x] | [ ] | `DataStructures/I_BinarySearchTreeCustom` |
+| **Heaps / Priority Queue** | [x] | [ ] | `DataStructures/G_PriorityQueueCustom` |
+| **Graphs (Adjacency List/Matrix)** | [x] | [ ] | `DataStructures/L_GraphCustom` |
+| **Graph Traversal (BFS/DFS)** | [x] | [ ] | Included in `DataStructures/L_GraphCustom` |
 
 ---
 
 ## Phase 4: Advanced Algorithms & Structures
 | Topic | Implementation | Problems | Status |
 | :--- | :---: | :---: | :--- |
-| **Recursion** | [ ] | [ ] | `e_fibonacciOptimization` (partial) |
-| **Sorting & Searching** | [ ] | [ ] | Need Merge/Quick Sort, Binary Search |
+| **Recursion** | [ ] | [ ] | `Basics/E_FibonacciOptimization` |
+| **Sorting & Searching** | [ ] | [ ] | Binary Search in `Basics/binary_search_manual.py` |
 | **Backtracking** | [ ] | [ ] | N-Queens, Permutations |
 | **Dynamic Programming** | [ ] | [ ] | Knapsack, LCS, Coin Change |
 | **Greedy Algorithms** | [ ] | [ ] | Activity Selection, Huffman |
 | **Graph Algorithms (Dijkstra)** | [ ] | [ ] | |
-| **Trie** | [x] | [ ] | `k_trie_custom` |
+| **Trie** | [x] | [ ] | `DataStructures/K_TrieCustom` |
 | **Union-Find (DSU)** | [ ] | [ ] | |
 | **Segment Tree / Fenwick** | [ ] | [ ] | |
 
 ---
 
 ## Immediate Next Steps
-1. **Arrays & Strings**: Implement basic operations (Rotation, Reverse, Sliding Window) to complete Phase 2.
-2. **Problem Solving**: Create a `Problems/` directory and start solving 5 classic problems for each "DONE" data structure.
-3. **Complexity Practice**: Add more examples to `Time-Complexity/` for recursion and nested loops.
+1. **Import Udemy Problems**: Place your Java LeetCode solutions into the appropriate `leetcode/<topic>/` directory following the naming pattern `LC<number>_<Name>.java`.
+2. **Arrays & Strings**: Complete scratch implementations for rotations, reversal, and sliding window.
+3. **Problem Solving**: Add 5 classic problems for each implemented data structure in `leetcode/`.
 
 ## Study Workflow (Per Topic)
-1. **Theory**: Read concept in `README.md`.
-2. **Code**: Implement `_custom` in Java and Python.
+1. **Theory**: Read concept in `README.md` and `docs/notes/`.
+2. **Code**: Implement `_custom` in Java and Python in `DataStructures/`.
 3. **Compare**: Update `Contrast` notes.
-4. **Solve**: Add 5+ problems in `Problems/`.
+4. **Solve**: Add problems in `leetcode/<topic>/`.
