@@ -46,6 +46,7 @@ public class LC0036_ValidSudoku {
             colSet[i] = new HashSet<>();
             boxSet[i] = new HashSet<>();
         }
+        
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
