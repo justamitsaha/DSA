@@ -460,3 +460,517 @@ public class Test {
     }
 }
 ```
+
+# **Merge Sort**
+
+## **1. Concept**
+
+- Merge Sort is a **Divide and Conquer** sorting algorithm.
+- It divides the original array into two equal or approximately equal parts.
+- Sorts both parts independently.
+- Merges the two sorted parts using the previously discussed **Merge Operation**.
+
+## **2. Divide and Conquer Approach**
+
+Two main steps:
+
+1. **Divide:** Recursively divide the problem into smaller parts.
+2. **Conquer:** Solve the smaller problems and merge their results to obtain the final solution.
+
+## **3. Working Mechanism**
+
+**Initial array:**
+
+`[15, 5, 20, 30, 40, 60, 7, 19]`
+
+### **Step 1: Divide**
+
+\- Divide the array into two approximately equal halves.
+
+```
+[15, 5, 20, 30]       [40, 60, 7, 19]
+```
+
+\- Recursively divide each half into smaller halves.
+
+```
+[15, 5] [20, 30]     [40, 60] [7, 19]
+```
+
+\- Continue dividing until every subarray contains exactly one element.
+
+```
+[15] [5] [20] [30] [40] [60] [7] [19]
+```
+
+\- A single-element array is already sorted.
+
+### **Step 2: Merge**
+
+\- Merge individual elements into sorted arrays using the Merge Operation.
+
+**First-level merging:**
+
+```
+[15] [5]     → [5, 15]
+[20] [30]    → [20, 30]
+[40] [60]    → [40, 60]
+[7]  [19]    → [7, 19]
+```
+
+**Second-level merging:**
+
+```
+[5, 15] [20, 30]    → [5, 15, 20, 30]
+
+[40, 60] [7, 19]    → [7, 19, 40, 60]
+```
+
+**Final merging:**
+
+```
+[5, 15, 20, 30] [7, 19, 40, 60]
+
+→ [5, 7, 15, 19, 20, 30, 40, 60]
+```
+
+Sorted array
+
+`[5, 7, 15, 19, 20, 30, 40, 60]`
+
+## **4. Important Observations**
+
+- Recursively divides the array until each subarray contains one element.
+- For even-sized arrays, divides into two equal halves.
+- For odd-sized arrays, divides into two approximately equal halves.
+- A single-element array is considered sorted.
+- Merges smaller sorted arrays into larger sorted arrays.
+- Uses recursion to implement the divide-and-conquer process.
+- The Merge Operation is the core component responsible for combining sorted subarrays.
+
+## **5. Overall Algorithm Flow**
+
+```
+Original Array
+      |
+      v
+Divide into two halves
+      |
+      v
+Recursively divide each half
+      |
+      v
+Continue until single-element arrays
+      |
+      v
+Merge individual elements
+      |
+      v
+Merge sorted subarrays
+      |
+      v
+Final Sorted Array
+```
+
+## **Next Section**
+
+- Implementation of Merge Sort using recursion.
+- Time and space complexity analysis.
+
+# **Partitioning Algorithm (Foundation of Quick Sort)**
+
+## **1. Concept**
+
+- Partitioning rearranges an array based on a given **key (pivot)**.
+- The pivot must be an element present in the array.
+- After partitioning:
+  - Elements smaller than the pivot are on the left.
+  - Elements equal to the pivot are in the middle.
+  - Elements greater than the pivot are on the right.
+- Partitioning does **not** mean sorting. Elements within each partition may still be unsorted.
+
+**Example:**
+
+Pivot = `3`
+
+```
+[2, 1, 0, 3, 5, 4, 6]
+```
+
+- Left: Elements smaller than `3`.
+- Middle: Elements equal to `3`.
+- Right: Elements greater than `3`.
+
+## **2. Partitioning Algorithm (Two-Way Partitioning)**
+
+- The algorithm discussed assumes that the pivot is always the **last element of the array**.
+- If the required pivot is elsewhere, swap it with the last element before applying the algorithm.
+
+### **Variables**
+
+- `pivot`: Element used for partitioning.
+- `left`: Initially `-1`; tracks the boundary of elements smaller than the pivot.
+- `i`: Iterates through the array from left to right, excluding the last element.
+
+### **Algorithm**
+
+1. Initialize `left = -1`.
+2. Iterate through the array from index `0` to `n-2`.
+3. For every element:
+  - If `arr[i] < pivot`:
+    - Increment `left`.
+    - Swap `arr[i]` with `arr[left]`.
+  - If `arr[i] >= pivot`, do nothing.
+4. After the loop:
+  - Increment `left`.
+  - Swap the pivot (last element) with `arr[left]`.
+5. The pivot is now at its correct partition position.
+
+## **3. Working Example**
+
+**Initial array:**
+
+`[2, 5, 1, 0, 4, 6, 3]`
+
+Pivot = `3`
+
+Initial `left = -1`.
+
+| i | Current element | Condition        | Action           | left |
+| - | --------------- | ---------------- | ---------------- | ---- |
+| 0 | 2               | 2 less than 3    | Swap with arr[0] | 0    |
+| 1 | 5               | 5 greater than 3 | Ignore           | 0    |
+| 2 | 1               | 1 less than 3    | Swap with arr[1] | 1    |
+| 3 | 0               | 0 less than 3    | Swap with arr[2] | 2    |
+| 4 | 4               | 4 greater than 3 | Ignore           | 2    |
+| 5 | 6               | 6 greater than 3 | Ignore           | 2    |
+
+After processing all elements:
+
+- `left = 2`
+- Elements up to index `2` are smaller than the pivot.
+- Swap the pivot `3` with the element at index `3`.
+
+**Final array:**
+
+`[2, 1, 0, 3, 4, 6, 5]`
+
+Pivot positioned
+
+- Left partition: `[2, 1, 0]`
+- Pivot: `3`
+- Right partition: `[4, 6, 5]`
+
+## **4. Key Observations**
+
+- This is called **Two-Way Partitioning**.
+- The array is divided into elements smaller than the pivot and elements greater than or equal to the pivot, with the pivot placed between them.
+- The `left` variable tracks the boundary of the smaller elements.
+- Elements greater than or equal to the pivot are left in the right partition.
+- The pivot reaches its correct partition position after the final swap.
+- The resulting partitions are not necessarily sorted.
+- Partitioning is the core operation used by Quick Sort.
+
+## **5. Time Complexity**
+
+- Time Complexity: O(n) — each element is traversed once.
+- Space Complexity: O(1) — partitioning is performed in-place.
+
+## **Next Section**
+
+- Implementation of the partitioning algorithm.
+- How Quick Sort uses partitioning to sort an array.
+
+# **Quick Sort**
+
+## **1. Concept**
+
+- Quick Sort is a **Divide and Conquer** sorting algorithm.
+- It uses the Partitioning Algorithm to divide an array into smaller parts.
+- Unlike Merge Sort, it does not divide the array into equal halves.
+- The division depends on the position of the pivot after partitioning.
+
+## **2. Key Property of Partitioning**
+
+- Partitioning does not sort the entire array.
+- However, it places the **pivot at its correct position** in the final sorted array.
+- All elements smaller than the pivot are on its left.
+- All elements greater than the pivot are on its right.
+- The elements within the left and right partitions may still be unsorted.
+
+**Example:**
+
+```
+Initial:      [2, 5, 1, 0, 4, 6, 3]
+
+After partition:
+              [2, 1, 0, 3, 4, 6, 5]
+                       |
+                  Pivot = 3
+```
+
+- `3` is now at its final sorted position.
+- Elements on either side may still be unsorted.
+
+## **3. Working Mechanism**
+
+1. Select a pivot and partition the array.
+2. The pivot reaches its correct sorted position.
+3. Recursively apply Quick Sort to the left partition.
+4. Recursively apply Quick Sort to the right partition.
+5. Continue until the partitions contain zero or one element.
+
+**Example:**
+
+```
+Initial Array:
+[2, 5, 1, 0, 4, 3]
+
+             |
+         Partition
+             |
+[2, 1, 0] [3] [5, 4]
+               |
+       3 is in correct position
+             |
+     Recursively Quick Sort
+       /             \
+ [2, 1, 0]         [5, 4]
+       |               |
+   Partition         Partition
+       |               |
+ [0, 1, 2]           [4, 5]
+       \               /
+        Final Sorted Array
+       [0, 1, 2, 3, 4, 5]
+```
+
+## **4. Quick Sort vs Merge Sort**
+
+| Merge Sort                                                 | Quick Sort                                  |
+| ---------------------------------------------------------- | ------------------------------------------- |
+| Divides array into two equal or approximately equal halves | Divides based on pivot position             |
+| Uses the Merge operation to combine sorted parts           | Uses Partitioning to position the pivot     |
+| Division is predictable                                    | Division depends on pivot selection         |
+| Merges sorted subarrays                                    | Recursively sorts left and right partitions |
+
+## **5. Key Observations**
+
+- Every partition operation places the pivot in its final sorted position.
+- Once positioned, the pivot does not need to be considered again.
+- Only the left and right partitions require further sorting.
+- Quick Sort recursively applies the same partitioning process.
+- Unlike Merge Sort, partitions may be highly unequal depending on the pivot.
+- Eventually, all elements reach their correct positions.
+
+## **Next Section**
+
+- Implementation of Quick Sort.
+- Time and space complexity analysis.
+
+
+# **Counting Sort**
+
+## **1. Concept**
+
+- Counting Sort is a **non-comparison-based sorting algorithm**.
+- Unlike Bubble Sort, Selection Sort, Merge Sort and Quick Sort, it does not compare elements to determine their relative order.
+- It works by counting the frequency of each element and calculating its final position.
+- It can achieve linear time complexity: O(n + m).
+
+**Comparison-based vs Non-comparison-based sorting:**
+
+- Comparison-based algorithms determine order by comparing elements.
+- Comparison-based sorting algorithms have a proven lower bound of O(n log n).
+- Counting Sort avoids comparisons and can achieve linear complexity.
+
+## **2. Working Mechanism**
+
+**Initial array:**
+
+`[2, 5, 1, 2, 3, 4, 6, 5, 2]`
+
+Let:
+
+- `n` = Number of elements.
+- `m` = Maximum element in the array (6).
+
+### **Step 1: Create Frequency Array**
+
+- Find the maximum element in the original array.
+- Create a frequency array of size `max + 1`.
+- Index represents the element; value represents its frequency.
+
+| Index (Element) | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+| --------------- | - | - | - | - | - | - | - |
+| Frequency       | 0 | 1 | 3 | 1 | 1 | 2 | 1 |
+
+### **Step 2: Calculate Cumulative Frequency**
+
+- Convert the frequency array into a cumulative frequency array.
+- Each position represents the number of elements less than or equal to that index.
+- This gives the final position (1-based rank) of the corresponding element.
+
+| Index (Element)      | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+| -------------------- | - | - | - | - | - | - | - |
+| Frequency            | 0 | 1 | 3 | 1 | 1 | 2 | 1 |
+| Cumulative Frequency | 0 | 1 | 4 | 5 | 6 | 8 | 9 |
+
+**Interpretation:**
+
+- `6` has cumulative frequency `9` → Its final position is index `8`.
+- `5` has cumulative frequency `8` → Its final position is index `7`.
+- `4` has cumulative frequency `6` → Its final position is index `5`.
+- `3` has cumulative frequency `5` → Its final position is index `4`.
+- `2` has cumulative frequency `4` → Its final position is index `3`.
+
+### **Step 3: Create Temporary Array**
+
+- Create a temporary array of the same size as the original array.
+- This array stores the sorted result.
+
+### **Step 4: Place Elements in Their Correct Positions**
+
+- Iterate through the original array **from right to left**.
+- For each element `x`:
+  1. Check its cumulative frequency.
+  2. Subtract 1 to get its zero-based final index.
+  3. Place the element at that index in the temporary array.
+  4. Decrement its cumulative frequency by 1.
+
+**Example:**
+
+- First element processed from the right: `2`.
+- Cumulative frequency of `2` = `4`.
+- Final index = `4 - 1 = 3`.
+- Place `2` at index `3`.
+- Decrement cumulative frequency of `2` to `3`.
+
+* Next element: `5`.
+* Cumulative frequency of `5` = `8`.
+* Final index = `8 - 1 = 7`.
+* Place `5` at index `7`.
+* Decrement cumulative frequency of `5` to `7`.
+
+\- Repeat for all remaining elements.
+
+### **Step 5: Copy Result Back**
+
+- Once all elements are placed, the temporary array contains the sorted result.
+- Copy all elements back into the original array.
+
+Final sorted array
+
+`[1, 2, 2, 2, 3, 4, 5, 5, 6]`
+
+## **3. Why Iterate from Right to Left?**
+
+- Counting Sort is a **stable sorting algorithm**.
+- Stability means that the relative order of equal elements is maintained.
+- Example: If equal elements are identified as `2A`, `2B`, `2C` in the original array, their relative order must remain the same in the sorted array.
+- Iterating from right to left while decrementing cumulative frequency preserves this relative order.
+
+## **4. Stable vs Unstable Sorting**
+
+- **Stable Sort:** Maintains the relative order of equal elements.
+- **Unstable Sort:** Does not guarantee preservation of the relative order of equal elements.
+- Counting Sort is stable.
+- Stability is important for Radix Sort, which uses Counting Sort internally.
+
+## **5. Time Complexity**
+
+Let:
+
+- `n` = Size of the original array.
+- `m` = Maximum element in the array.
+
+| Operation                      | Complexity |
+| ------------------------------ | ---------- |
+| Find maximum element           | O(n)       |
+| Calculate frequency            | O(n)       |
+| Calculate cumulative frequency | O(m)       |
+| Populate temporary array       | O(n)       |
+| Copy result back               | O(n)       |
+
+**Overall Time Complexity: O(n + m)**
+
+**Space Complexity: O(n + m)**
+
+- Temporary array requires O(n) space.
+- Frequency array requires O(m) space.
+
+## **6. Limitations**
+
+- Requires a frequency array based on the maximum element.
+- If the maximum element is very large, the frequency array consumes significant memory.
+- Time and space complexity depend on both the input size and the maximum element.
+- Not suitable for every dataset.
+- Most useful when the range of input values is relatively small.
+
+## **7. Key Observations**
+
+- Counting Sort does not compare elements.
+- Uses frequency counting and cumulative frequency to determine element positions.
+- Iterates through the original array in reverse when placing elements to maintain stability.
+- Achieves linear time complexity when the value range is reasonably small.
+- Is a stable sorting algorithm.
+- Its stability is important for Radix Sort.
+
+## **Next Section**
+
+- Implementation of Counting Sort.
+- Radix Sort and how it uses Counting Sort.
+
+## **Making Counting Sort Stable**
+
+- **Stable sorting:** If two elements have equal values, their original relative order must be preserved in the sorted result.
+- The current Counting Sort implementation is not stable because it processes elements from **left to right** during the final placement step.
+- **Why it becomes unstable:**
+  - The cumulative count reserves positions for each value.
+  - For duplicate values, Counting Sort fills the reserved positions starting from the last position.
+  - This reverses the relative order of equal elements.
+  - Example: `2A` and `2B` may appear as `2B, 2A` in the result, even though the original order was `2A, 2B`.
+
+### **Making Counting Sort Stable**
+
+- Do not change the cumulative-count placement logic.
+- Change the final iteration over the original array from **left to right** to **right to left**.
+- This ensures that elements with equal values retain their original relative order.
+
+### **Why Stability Matters**
+
+- Counting Sort is often used as part of another sorting algorithm rather than directly, because it has a limited value range (`0` to `k`).
+- It is used in **Radix Sort**, where stability is essential.
+- If Counting Sort is not stable, Radix Sort will not work correctly.
+
+
+## **Radix Sort**
+
+- **Radix Sort** is a non-comparison-based sorting algorithm.
+- It sorts numbers by processing individual digit positions, starting with the **least significant digit** and moving towards more significant digits.
+
+### **Working Principle**
+
+- Consider the input: `[259, 142, 842, 741, 356]`.
+- Sort the numbers in multiple passes:
+  1. **Ones place:** Sort based on the last digit.
+    - Result: `[741, 142, 842, 356, 259]`
+  2. **Tens place:** Sort based on the tens digit.
+    - Result: `[741, 142, 842, 356, 259]`
+  3. **Hundreds place:** Sort based on the hundreds digit.
+    - Result: `[142, 259, 356, 741, 842]`
+- After processing all digit positions, the numbers are sorted.
+
+### **Role of Counting Sort**
+
+- Radix Sort uses **Counting Sort** to sort numbers based on each individual digit position.
+- When sorting by ones, tens, or hundreds, the keys are always between `0` and `9`.
+- This limited range makes Counting Sort suitable for sorting each digit position.
+- Counting Sort must be **stable** so that the ordering established in previous passes is preserved.
+
+### **Overall Process**
+
+- Sort by ones place.
+- Sort by tens place.
+- Sort by hundreds place.
+- Continue until all digit positions are processed.
