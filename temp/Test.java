@@ -4,42 +4,50 @@ import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
-        int[] arr ={7,9,18,4,11,19,27};
+        int[] arr = {10, 345, 23, 189, 94, 68};
 
 
-    }
-
-    public static void mergeSort(int[] arr){
-        int start = 0;
-
-    }
-
-    public static int[] merge(int[] arr, int start, int mid, int end){
-        int[] result = new int[end];
-        int i = start;
-        int start2 = mid;
-        while (start < start2 && mid <end){
-            if(arr[start]< arr[mid]){
-                result[i] = arr[start];
-                start++;
-            } else {
-                result[i] = arr[mid];
-                mid++;
-            }
-            i++;
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            max = Math.max(max, arr[i]);
+        }
+        int n = 10;
+        while (max / n > 1) {
+            arr = countingSort(arr, n);
+            n = n * 10;
         }
 
-        System.out.println(start+""+mid);
-        while (start < start2){
-            result[i] = arr[start];
-            start ++;
-            i++;
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static int[] countingSort(int[] arr, int base) {
+        if (arr == null || arr.length == 0) {
+            return new int[0];
         }
 
-        while (mid < end){
-            result[i] = arr[mid];
-            mid ++;
-            i++;
+
+        int[] frequencyArray = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            var digit = arr[i]/base;
+            frequencyArray[arr[i]] = frequencyArray[digit] + 1;
+
+        }
+
+        var sum = 0;
+        int[] frequencyCumulative = new int[frequencyArray.length];
+        for (int i = 0; i < frequencyArray.length; i++) {
+            sum = sum + frequencyArray[i];
+            frequencyCumulative[i] = sum;
+        }
+
+        int[] result = new int[arr.length];
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            var item = arr[i]/10;
+            var digit = arr[i];
+            var position = frequencyCumulative[item] - 1;
+            frequencyCumulative[item] = frequencyCumulative[item] - 1;
+            result[position] = digit;
         }
         return result;
     }

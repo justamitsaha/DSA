@@ -7,7 +7,7 @@ Many  algorithm will work only if the array is sorted like Bellman ford, Binary 
 6. Head Sort
 7. Radix sort
 
-# **Bubble Sort**
+# **1. Bubble Sort**
 
 ## **1. Concept**
 
@@ -107,7 +107,7 @@ public class Test {
     }
 }
 ```
-# **Selection Sort**
+# **2. Selection Sort**
 
 ## **1. Concept**
 
@@ -249,7 +249,7 @@ int[] arr = {15, 20, 5, 45, 30, 10};
 }
 ```
 
-# **Insertion Sort**
+# **3. Insertion Sort**
 
 ## **1. Concept**
 
@@ -461,7 +461,7 @@ public class Test {
 }
 ```
 
-# **Merge Sort**
+# **5. Merge Sort**
 
 ## **1. Concept**
 
@@ -681,7 +681,7 @@ Pivot positioned
 - Implementation of the partitioning algorithm.
 - How Quick Sort uses partitioning to sort an array.
 
-# **Quick Sort**
+# **7. Quick Sort**
 
 ## **1. Concept**
 
@@ -763,13 +763,50 @@ Initial Array:
 - Unlike Merge Sort, partitions may be highly unequal depending on the pivot.
 - Eventually, all elements reach their correct positions.
 
-## **Next Section**
+## **6 Implementation**
+```java
+import java.util.Arrays;
 
-- Implementation of Quick Sort.
-- Time and space complexity analysis.
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = {2, 5, 1, 0, 4, 6, 3};
+//        var x = partition(arr, 0, arr.length - 1);
+//        System.out.println("Partitioned by 3" + Arrays.toString(arr));
+        quickSort(arr, 0, arr.length - 1);
+        System.out.println("Fully sorted " + Arrays.toString(arr));
+    }
+
+    public static void quickSort(int[] arr, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int partitionIndex = partition(arr, start, end);
+        quickSort(arr, start, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, end);
+    }
 
 
-# **Counting Sort**
+    public static int partition(int[] arr, int start, int end) {
+        int pivot = arr[end];
+        int left = start - 1;
+        for (int i = start; i < end; i++) {
+            if (arr[i] < pivot) {
+                left++;
+                var temp = arr[i];
+                arr[i] = arr[left];
+                arr[left] = temp;
+            }
+        }
+        left++;
+        arr[end] = arr[left];
+        arr[left] = pivot;
+        return left;
+    }
+}
+```
+
+
+# **8. Counting Sort**
 
 ## **1. Concept**
 
@@ -916,10 +953,54 @@ Let:
 - Is a stable sorting algorithm.
 - Its stability is important for Radix Sort.
 
-## **Next Section**
+## **Implementation **
 
-- Implementation of Counting Sort.
-- Radix Sort and how it uses Counting Sort.
+
+**Note it assumes numbers are non-negative**
+```java
+import java.util.Arrays;
+
+public class Test {
+  public static void main(String[] args) {
+    int[] arr = {2, 5, 1, 2, 3, 4, 6, 5, 2};
+
+    System.out.println(Arrays.toString(countingSort(arr)));
+  }
+
+  public static int[] countingSort(int[] arr) {
+    if (arr == null || arr.length == 0) {
+      return new int[0];
+    }
+
+    int max = 0;
+    for (int i = 0; i < arr.length; i++) {
+      max = Math.max(max, arr[i]);
+    }
+    int[] frequencyArray = new int[max + 1];
+    for (int i = 0; i < arr.length; i++) {
+      frequencyArray[arr[i]] = frequencyArray[arr[i]] + 1;
+
+    }
+
+    var sum = 0;
+    int[] frequencyCumulative = new int[frequencyArray.length];
+    for (int i = 0; i < frequencyArray.length; i++) {
+      sum = sum + frequencyArray[i];
+      frequencyCumulative[i] = sum;
+    }
+
+    int[] result = new int[arr.length];
+
+    for (int i = arr.length - 1; i >= 0; i--) {
+      var item = arr[i];
+      var position = frequencyCumulative[item] - 1;
+      frequencyCumulative[item] = frequencyCumulative[item] - 1;
+      result[position] = item;
+    }
+    return result;
+  }
+}
+```
 
 ## **Making Counting Sort Stable**
 
