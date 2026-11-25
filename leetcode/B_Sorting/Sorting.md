@@ -74,37 +74,42 @@ Assume ascending order.
 - The unsorted portion decreases by one element after each pass.
 - Already sorted elements are not considered in subsequent passes.
 
-## **4. Implementation**
+## **4. Complexity**
+
+| Metric | Complexity | Scenario / Condition |
+| --- | --- | --- |
+| **Best-Case Time** | O(n) | Array is already sorted (with early-exit flag) |
+| **Average-Case Time** | O(n²) | Elements are in random order |
+| **Worst-Case Time** | O(n²) | Array is sorted in reverse order |
+| **Auxiliary Space** | O(1) | Sorts elements in-place using constant extra memory |
+
+Space Complexity: O(1) (in-place sorting).
+
+## **5. Implementation**
 
 ```java
 import java.util.Arrays;
 
 public class Test {
-    public static void main(String[] args) {
-        int[] arr = {10, 5, 40, 8, 9};
-        int length = arr.length;
-        boolean swapped;
+  public static void main(String[] args) {
+    int[] arr = {20, 10, 40, 50, 25, 15};
 
-        for (int i = 0; i < arr.length - 1; i++) {
-            swapped = false;
-            for (int j = 0; j < length - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = temp;
-                    swapped = true;
-                }
-            }
-            length--;
-            
-            // If no elements were swapped, the array is already sorted
-            if (!swapped) {
-                break;
-            }
+    for (int i = 0; i < arr.length - 1; i++) {
+      boolean swapped = false;
+      for (int j = 0; j < arr.length - 1 - i; j++) {
+        if (arr[j] > arr[j + 1]) {
+          var temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+          swapped = true;
         }
+      }
 
-        System.out.println(Arrays.toString(arr));
+      if (!swapped)
+        break;
     }
+    System.out.println(Arrays.toString(arr));
+  }
 }
 ```
 # **2. Selection Sort**
@@ -186,66 +191,28 @@ For an array of size `n`:
 ## **6. Implementation**
 
 ```java
-public class Test {
-    public static void main(String[] args) {
-        int[] arr = {15, 20, 5, 45, 30, 10};
-        int start = 0;
-        for (int i = 0; i < arr.length; i++) {
-            int minVal = Integer.MAX_VALUE;
-            int minPosition = 0;
-            for (int j = start; j < arr.length; j++) {
-                if(arr[j]< minVal){
-                    minVal = arr[j];
-                    minPosition = j;
-                }
-            }
-            var temp = arr[start];
-            arr[start] = minVal;
-            arr[minPosition] = temp;
-            start++;
-        }
-        
-
-        System.out.println(Arrays.toString(arr));
-    }
-}
-```
-Four Ways to Clean It Up
-
-While functionally accurate, there is one subtle edge case and a few redundant variables you can streamline:
-
-1.  **Avoid `Integer.MAX_VALUE` (Edge Case Fix):** If every remaining element in the array happens to be `Integer.MAX_VALUE` (`2147483647`), `arr[j] < minVal` will evaluate to `false`, leaving `minPosition` at its initial `0` and corrupting the sorted prefix at index `0`. Instead, initialize `minPosition = i` (assuming the first unsorted element is the smallest) and compare `arr[j] < arr[minPosition]`. This also removes the need for `minVal` completely.
-2.  **Drop the `start` Variable:** Because `start` starts at `0` and increments by `1` at the end of every outer loop iteration, `start` is always identical to `i`. You can use `i` directly.
-3.  **Outer Loop Bound (`arr.length - 1`):** Once the first n−1n - 1n−1 elements are placed, the last element is automatically in its final position, so the outer loop only needs to run `i < arr.length - 1`.
-4.  **Skip Self-Swaps:** Only perform the swap if `minPosition != i` to avoid unnecessary writes when an element is already in the right spot.
-
-Here is the cleaner, idiomatic version:
-
-```java
 import java.util.Arrays;
 
 public class Test {
-public static void main(String[] args) {
-int[] arr = {15, 20, 5, 45, 30, 10};
+  public static void main(String[] args) {
+    int[] arr = {15, 25, 45, 30, 10};
 
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minPosition = i;
-
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j] < arr[minPosition]) {
-                    minPosition = j;
-                }
-            }
-
-            if (minPosition != i) {
-                int temp = arr[i];
-                arr[i] = arr[minPosition];
-                arr[minPosition] = temp;
-            }
+    for (int i = 0; i < arr.length - 1; i++) {
+      int min = arr[i];
+      int index = i;
+      for (int j = i + 1; j < arr.length; j++) {
+        if (arr[j] < min) {
+          min = arr[j];
+          index = j;
         }
-
-        System.out.println(Arrays.toString(arr));
+      }
+      if (index != i) {
+        arr[index] = arr[i];
+        arr[i] = min;
+      }
     }
+    System.out.println(Arrays.toString(arr));
+  }
 }
 ```
 
@@ -320,8 +287,37 @@ Example: `[5, 10, 15, 20, 25]`
 - More efficient for already sorted or nearly sorted arrays.
 - The next section covers implementation and further time-complexity analysis.
 
-## **5. implementation
+## **5. Complexity**
 
+| Metric | Complexity | Scenario / Reason |
+| --- | --- | --- |
+| **Best-Case Time** | O(n) | The input array is already sorted. |
+| **Average-Case Time** | O(n²) | The elements are arranged in random order. |
+| **Worst-Case Time** | O(n²) | The input array is sorted in reverse order. |
+| **Auxiliary Space** | O(1) | Sorts in-place using only a few temporary variables. |
+
+## **6. implementation
+
+```java
+import java.util.Arrays;
+
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = {20, 10, 40, 15, 5};
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    var temp = arr[j - 1];
+                    arr[j - 1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+}
+```
+Above will work but below is better as inner loop won't execute if condition's fail
 ```java
 import java.util.Arrays;
 
@@ -572,7 +568,64 @@ Merge sorted subarrays
 Final Sorted Array
 ```
 
-## **Next Section**
+## **6. Implementation**
+
+```java
+import java.util.Arrays;
+
+public class Test {
+    public static void main(String[] args) {
+        // to test merge operation
+        // int[] arr = {2, 7, 9, 16, 8, 14, 25, 35};
+        // mergeOperation(arr, 0, 8);
+
+        int[] arr = {15, 5, 20, 30, 40, 60, 7, 19};
+        mergeSort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    // not returning anything, just sorting the array in place so that
+    // mergeSort can be called recursively
+    public static void mergeSort(int[] arr, int start, int end) {
+        if (end > start) {
+            int mid = (start + end) / 2;
+            mergeSort(arr, start, mid);
+            mergeSort(arr, mid + 1, end);
+            mergeOperation(arr, start, end);
+        }
+    }
+
+    public static void mergeOperation(int[] arr, int start, int end) {
+        int i = start;
+        int mid = (start + end) / 2;
+        int j = mid + 1;
+        int k = start;
+
+        int[] result = new int[arr.length];
+
+        while (i < mid + 1 && j < end + 1) {
+            if (arr[i] < arr[j]) {
+                result[k++] = arr[i++];
+            } else {
+                result[k++] = arr[j++];
+            }
+        }
+
+        while (i < mid + 1) {
+            result[k++] = arr[i++];
+        }
+
+        while (j < end + 1) {
+            result[k++] = arr[j++];
+        }
+
+        // copying the result array to the original array in the range of start to end
+        for (int l = start; l < end + 1; l++) {
+            arr[l] = result[l];
+        }
+    }
+}
+```
 
 - Implementation of Merge Sort using recursion.
 - Time and space complexity analysis.
@@ -768,40 +821,38 @@ Initial Array:
 import java.util.Arrays;
 
 public class Test {
-    public static void main(String[] args) {
-        int[] arr = {2, 5, 1, 0, 4, 6, 3};
+  public static void main(String[] args) {
+    int[] arr = {2, 5, 1, 0, 4, 6, 3};
 //        var x = partition(arr, 0, arr.length - 1);
 //        System.out.println("Partitioned by 3" + Arrays.toString(arr));
-        quickSort(arr, 0, arr.length - 1);
-        System.out.println("Fully sorted " + Arrays.toString(arr));
+    quickSort(arr, 0, arr.length - 1);
+    System.out.println("Fully sorted " + Arrays.toString(arr));
+  }
+
+  public static void quickSort(int[] arr, int start, int end) {
+    if (end > start) {
+      int partitionIndex = partition(arr, start, end);
+      quickSort(arr, start, partitionIndex - 1);
+      quickSort(arr, partitionIndex + 1, end);
     }
+  }
 
-    public static void quickSort(int[] arr, int start, int end) {
-        if (start >= end) {
-            return;
-        }
-        int partitionIndex = partition(arr, start, end);
-        quickSort(arr, start, partitionIndex - 1);
-        quickSort(arr, partitionIndex + 1, end);
-    }
-
-
-    public static int partition(int[] arr, int start, int end) {
-        int pivot = arr[end];
-        int left = start - 1;
-        for (int i = start; i < end; i++) {
-            if (arr[i] < pivot) {
-                left++;
-                var temp = arr[i];
-                arr[i] = arr[left];
-                arr[left] = temp;
-            }
-        }
+  public static int partition(int[] arr, int start, int end) {
+    int pivot = arr[end];
+    int left = start - 1;
+    for (int i = start; i < end; i++) {
+      if (arr[i] < pivot) {
         left++;
-        arr[end] = arr[left];
-        arr[left] = pivot;
-        return left;
+        var temp = arr[i];
+        arr[i] = arr[left];
+        arr[left] = temp;
+      }
     }
+    left++;
+    arr[end] = arr[left];
+    arr[left] = pivot;
+    return left;
+  }
 }
 ```
 
@@ -1025,7 +1076,7 @@ public class Test {
 - If Counting Sort is not stable, Radix Sort will not work correctly.
 
 
-## **Radix Sort**
+# **9. Radix Sort**
 
 - **Radix Sort** is a non-comparison-based sorting algorithm.
 - It sorts numbers by processing individual digit positions, starting with the **least significant digit** and moving towards more significant digits.
@@ -1055,3 +1106,71 @@ public class Test {
 - Sort by tens place.
 - Sort by hundreds place.
 - Continue until all digit positions are processed.
+
+### **Implementation**
+
+```java
+
+import java.util.Arrays;
+
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = {10, 345, 23, 189, 94, 68};
+        arr = radixSort(arr);
+        System.out.println(Arrays.toString(arr));
+
+    }
+
+    public static int[] radixSort(int[] arr) {
+        int max = 0;
+        for (int j : arr) {
+            max = Math.max(max, j);
+        }
+
+        int base = 1;
+        while (max / base > 0) {
+            arr = countingSort(arr, base);
+            base = base * 10;
+        }
+        return arr;
+    }
+
+    public static int[] countingSort(int[] arr, int base) {
+        if (arr == null || arr.length == 0) {
+            return new int[0];
+        }
+
+        int[] frequencyArray = new int[10];
+        for (int j : arr) {
+            // This is where we change the base to get the digit we want to sort by.
+            // This is the difference between counting sort and radix sort.
+            // In counting sort, we just count the frequency of each number.
+            // In radix sort, we count the frequency of each digit in the number.
+            var digit = j / base % 10;
+            frequencyArray[digit] = frequencyArray[digit] + 1;
+        }
+
+        var sum = 0;
+        int[] frequencyCumulative = new int[frequencyArray.length];
+        for (int i = 0; i < frequencyArray.length; i++) {
+            sum = sum + frequencyArray[i];
+            frequencyCumulative[i] = sum;
+        }
+
+        int[] result = new int[arr.length];
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            // Same as above, we change the base to get the digit we want to sort by.
+            // This is the difference between counting sort and radix sort.
+            // In counting sort, we just count the frequency of each number.
+            // In radix sort, we count the frequency of each digit in the number.
+            var item = arr[i] / base % 10;
+            var digit = arr[i];
+            var position = frequencyCumulative[item] - 1;
+            frequencyCumulative[item] = frequencyCumulative[item] - 1;
+            result[position] = digit;
+        }
+        return result;
+    }
+}
+```
